@@ -61,7 +61,13 @@ public class MappedFile extends ReferenceResource {
     protected TransientStorePool transientStorePool = null;
     private String fileName;
     private long fileFromOffset;
+    //yh: 消息物理文件
     private File file;
+    /**
+     * yh: 消息内存映射buffer
+     * why used MappedByteBuffer?
+     * 减少用户java进程于os之间的read、write系统调用，省去了数据在用户空间<->内核空间的拷贝过程
+     */
     private MappedByteBuffer mappedByteBuffer;
     private volatile long storeTimestamp = 0;
     private boolean firstCreateInQueue = false;
